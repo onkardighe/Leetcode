@@ -1,7 +1,10 @@
+// https://leetcode.com/problems/remove-duplicates-from-sorted-array
+
+
 public class _0026_Remove_Duplicates_from_Sorted_Array {
-    public static void main(String[] args) {
-        // int[] arr = {0,0,1,1,1,2,2,3,3,4};
-        int[] arr = {0,0,1};
+    public static void main(String[] args)
+    {
+        int[] arr = {0,0,2};
         System.out.println(removeDuplicates(arr));
     }
 
@@ -12,32 +15,15 @@ public class _0026_Remove_Duplicates_from_Sorted_Array {
             return 1;
         }
 
-        int iCnt = 0;
+        int iCnt = 1;
         for(int i = 1; i < nums.length; i++)
         {
-            if(!contains(nums, nums[i], iCnt) )
+            if(nums[i] != nums[i-1])
             {
-                iCnt++;
-                nums[iCnt] = nums[i];
-            }
-
-            if(i != iCnt)
-            {
-                nums[i] = '_';
+                
+                nums[iCnt++] = nums[i];
             }
         }
-        return iCnt+1;
-    }
-
-    public static boolean contains(int[] arr, int target, int n)
-    {
-        for(int i = 0; i <= n; i++ )
-        {
-            if(arr[i] == target)
-            {
-                return true;
-            }
-        }    
-        return false;
+        return iCnt;
     }
 }
