@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/truncate-sentence/
+
 public class _1816_Truncate_Sentence
 {
     public static void main(String[] args) {
