@@ -27,46 +27,29 @@ public class _0173_Binary_Search_Tree_Iterator
 
 import java.util.*;
 class BSTIterator {
-    private List<Integer> ele = new ArrayList<>();
+    private Queue<Integer> ele;
     private int current;
 
     public BSTIterator(TreeNode root) 
     {
-        ele = new ArrayList<>();
+        ele = new LinkedList<>();
         convert(root);
-        current = -1;
-        print();
     }
-    public void print()
-    {
-        System.out.println("Siize : "+ele.size());
-        for(int i = 0 ; i < ele.size(); i++)
-        {
-            System.out.println(ele.get(i));
-        }
-    }
-    
+
     
     public int next()
     {
-        this.current++;
-        if(current >= ele.size())
-        {
-            return -1;
-        }
-        return this.ele.get(this.current);
+        return this.ele.remove();
     }
     
     public boolean hasNext()
     {
-        if(this.current+1 >= this.ele.size())
+        if(this.ele.size() > 0)
         {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
-    
-    
     
     private void convert(TreeNode root)
     {
