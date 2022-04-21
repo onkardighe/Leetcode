@@ -20,33 +20,31 @@ public class _0705_Design_HashSet
 }
 class MyHashSet
 {
-    private ArrayList<Integer> obj;
+    int iSize;
+    boolean[] set;
     public MyHashSet()
     {
-        obj = new ArrayList<>();   
+        iSize = (int)Math.pow(10, 6)+1;
+        set = new boolean[iSize];
     }
     
     public void add(int key)
     {
-        if(!(obj.contains(key)))
-        {
-            obj.add(key);
-        }
+        set[key]  = true;    
     }
     
     public void remove(int key)
     {
-        if(obj.contains(key))
-        {
-            obj.remove(obj.indexOf(key));
-        }
+        set[key] = false;    
     }
     
     public boolean contains(int key)
     {
-        return obj.contains(key);
+        return set[key];    
     }
 }
+
+
 
 /**
  * Your MyHashSet object will be instantiated and called as such:
