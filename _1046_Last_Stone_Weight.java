@@ -6,14 +6,48 @@ public class _1046_Last_Stone_Weight
 {
     public static void main(String[] args)
 	{
-        int[] arr = {9,3,2,10};
+        int[] stones = {9,3,2,10};
 
-		System.out.println(lastStoneWeight(arr));
+		System.out.println(new Solution1046().lastStoneWeightOptimised(stones));
+		// System.out.println(lastStoneWeight(arr));
 
 		
     }
+}
+
+class Solution1046 {
+	// OPTIMISED -> USED PriorityQueue
+    public int lastStoneWeightOptimised(int[] stones) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
+        
+        for(int a : stones)
+        {
+            pq.add(a);
+        }
+        
+        while(!pq.isEmpty())
+        {
+            if(pq.size() == 1)
+            {
+                return pq.poll();
+            }
+            
+            int f = pq.poll();
+            int s = pq.poll();
+            
+            if(f != s)
+            {
+                pq.add(f-s);
+            }
+        }
+        
+        return 0;
+        
+    }
 
 
+
+	// NOT OPTIMISED -> Used Array
 	public static int lastStoneWeight(int[] stones)
     {
 
@@ -72,4 +106,3 @@ public class _1046_Last_Stone_Weight
 		return ans;
 	}
 }
-
