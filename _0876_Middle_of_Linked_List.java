@@ -6,6 +6,16 @@ public class _0876_Middle_of_Linked_List
     public static void main(String[] args) {
         // Creating Linked List
         int[] arr = {1,2,3,4,5};
+        ListNode head = createLinkedList(arr);
+        head.print(head);       // Oroginal 
+        head = new Solution876Optimised().middleNode(head);
+        head.print(head);       // Middle
+        
+    }
+
+    private static ListNode createLinkedList(int[] arr)
+    {
+        
         ListNode head = new ListNode(arr[0]);
         ListNode temp = head;
 
@@ -14,14 +24,25 @@ public class _0876_Middle_of_Linked_List
             temp.next = new ListNode(arr[i]);
             temp = temp.next;
         }
-
-        Solution obj = new Solution();
-        head.print(head);
-        head = obj.middleNode(head);
-        head.print(head);
+        return head;
     }
 }
-class Solution {
+
+class Solution876Optimised {
+    public ListNode middleNode(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        
+        while(fast != null && fast.next != null)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+        
+    }
+}
+class Solution876 {
     public ListNode middleNode(ListNode head)
     {
         int size = getSize(head);
