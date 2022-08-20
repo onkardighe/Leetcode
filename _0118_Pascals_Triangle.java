@@ -5,12 +5,41 @@ import java.util.*;
 public class _0118_Pascals_Triangle {
     public static void main(String[] args) {
         int numRows = 5;
-        List<List<Integer>> ans  = new Solution0118().generate(numRows);
+        List<List<Integer>> ans  = new Solution0118Optimised().generate(numRows);
 
         for(List<Integer> a : ans)
         {
             System.out.println(a);
         }
+    }
+}
+
+class Solution0118Optimised {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> pre = null;
+        
+        for(int i = 0; i < numRows; i++)
+        {
+            List<Integer> temp = new ArrayList<Integer>();
+            for(int j = 0; j <= i; j++)
+            {
+                if(j == 0 || j == i)
+                {
+                    temp.add(1);
+                }
+                else
+                {
+                    temp.add(pre.get(j-1)+pre.get(j));
+                }
+            }
+            pre = temp;
+            ans.add(temp);
+        }
+        
+        return ans;
+        
+        
     }
 }
 
