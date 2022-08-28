@@ -1,5 +1,11 @@
 // https://leetcode.com/problems/unique-paths/
 
+
+// Recursion   : O(e^n)
+// DP + Memo   : O(m*n)     Space = O(n*m)
+// Combination : O(m)       Space = O(1) 
+
+
 import java.util.*;
 
 public class _0062_Unique_Paths
@@ -7,7 +13,27 @@ public class _0062_Unique_Paths
     public static void main(String[] args) {
         int m = 3;
         int n = 7;
-        System.out.println(new Solution0062().uniquePaths(m, n));
+        System.out.println(new Solution0062POptimised().uniquePaths(m, n));
+    }
+}
+
+
+class Solution0062POptimised {
+    public int uniquePaths(int m, int n) {
+        int N = m+n-2;
+        int R = Math.min(m, n)-1;
+        double res = 1;
+        
+        
+        // calculating NcR
+        
+        for(int i = 1; i <=R; i++)
+        {
+            res = res * (N-R+i)/i;
+        }
+        
+        return (int)res;
+        
     }
 }
 
@@ -30,7 +56,7 @@ class Solution0062 {
             return 0;
         }
         
-        if(row == m-1 || col  == n-1)
+        if(row == m-1 && col  == n-1)
         {
             return 1;
         }
